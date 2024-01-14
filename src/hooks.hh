@@ -146,6 +146,7 @@ class Debugger
                     if(setHWBps(bpt.addr, bpt.cond))
                     {
                         bpt.trampoline = new JmpOut(bpt.addr);
+                        bpt.enabled = true;
                         breakpoints->insert({bpt.addr, bpt});
                         return true;
                     }
@@ -165,6 +166,7 @@ class Debugger
                       )
                     {
                         bpt.trampoline = new JmpOut(bpt.addr);
+                        bpt.enabled = true;
 
                         bpt.orig = *(BYTE *)bpt.addr;
                         *(BYTE *) bpt.addr = 0xCC;
@@ -206,7 +208,8 @@ LONG CALLBACK veh_handler(PEXCEPTION_POINTERS ExceptionInfo)
             BptInfo * bpt = (*debugger)[(uintptr_t)ctx->Rip];
             bpt->triggered = true;
 
-            bpt->hook(ctx);
+            if (bpt->enabled)
+                bpt->hook(ctx);
             bpt->triggered = false;
 
             // account for hooking a possible
