@@ -206,8 +206,8 @@ LONG CALLBACK veh_handler(PEXCEPTION_POINTERS ExceptionInfo)
         if ((*debugger)[ctx->Rip])
         {
             BptInfo * bpt = (*debugger)[(uintptr_t)ctx->Rip];
+            
             bpt->triggered = true;
-
             if (bpt->enabled)
                 bpt->hook(ctx);
             bpt->triggered = false;
