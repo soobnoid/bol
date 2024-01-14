@@ -217,7 +217,7 @@ LONG CALLBACK veh_handler(PEXCEPTION_POINTERS ExceptionInfo)
 
             ctx->Rip = (DWORD64)bpt->trampoline;
 
-            if(bpt->trampoline->insnMnemonic)
+            if(bpt->trampoline->branch)
             {
                 if(jmpTaken(bpt->trampoline->insnMnemonic, ctx))
                 {
