@@ -55,7 +55,7 @@ struct Dr7
     unsigned int LEN3  : 2;
                 
     unsigned int reserved2 : 33;
-} *pDr7;
+};
 
 bool unsetHWBpRegister (HANDLE thd, uintptr_t addr)
 {
