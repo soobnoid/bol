@@ -24,39 +24,6 @@ enum bptLen
     fourBytes  = 0b11
 };
 
-struct Dr7
-{
-    unsigned int L0 : 1;
-    unsigned int G0 : 1;
-    unsigned int L1 : 1;
-    unsigned int G1 : 1;
-    unsigned int L2 : 1;
-    unsigned int G2 : 1;
-    unsigned int L3 : 1;
-
-    unsigned int LE : 1;
-    unsigned int GE : 1;
-
-    unsigned int reserved0 : 1;
-
-    unsigned int RTM : 1;
-    unsigned int IR  : 1;
-    unsigned int GD  : 1;
-
-    unsigned int resserved1 : 2;
-
-    unsigned int COND0 : 2;
-    unsigned int LEN0  : 2;
-    unsigned int COND1 : 2;
-    unsigned int LEN1  : 2;
-    unsigned int COND2 : 2;
-    unsigned int LEN2  : 2;
-    unsigned int COND3 : 2;
-    unsigned int LEN3  : 2;
-                
-    unsigned int reserved2 : 33;
-};
-
 bool unsetHWBpRegister (HANDLE thd, uintptr_t addr)
 {
     CONTEXT ctx;
